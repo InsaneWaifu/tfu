@@ -80,7 +80,7 @@ showIf entity_kind="Due to rank" {
     </b><br/>
     {{/if}}
     <b>TFU Quality Assurance</b>
-</div>
+</p>
 
 Hello **{{officer_name}}**,<br/>
 
@@ -149,11 +149,10 @@ field grading label="Grading Level" {
 field expiry_point label="Date of Point Expiry"
     </script>
     <script class="template" type="text/x-handlebars" title="Notice of Punishment" id="template-punishment">
-<p style="text-align: center;">
-    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
-    <b>Notice of Punishment</b><br/>
-    <b>TFU Quality Assurance</b>
-</div>
+{{>header
+    title="Notice of Punishment"
+    department="TFU Quality Assurance"
+}}
 
 Hello **{{officer_name}}**,<br/>
 
@@ -191,11 +190,10 @@ field is_rtfo label="RTFO?" {
 }
     </script>
     <script class="template" type="text/x-handlebars" title="Notice of Investigation" id="template-investigation">
-<p style="text-align: center;">
-    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
-    <b>Notice of Investigation</b><br/>
-    <b>TFU Quality Assurance</b>
-</div>
+{{>header
+    title="Notice of Investigation"
+    department="TFU Quality Assurance"
+}}
 
 Hello **{{officer_name}}**,<br/>
 
@@ -243,7 +241,7 @@ field expiry_point label="Date of Point Expiry"
     <b>Activity Warning - Strike {{strike}}</b><br/>
 {{/if}}
     <b>TFU Quality Assurance</b>
-</div>
+</p>
 
 Hello **{{officer_name}}**,<br/>
 
@@ -270,11 +268,10 @@ Staff Sergeant Vina Yin<br/>
         field question label="Question"
     </script>
     <script class="template" type="text/x-handlebars" title="Application Authenticity" id="template-ai">
-<p style="text-align: center;">
-    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
-    <b>Application Authenticity</b><br/>
-    <b>TFU Recruitment</b>
-</div>
+{{>header
+    title="Application Authenticity"
+    department="TFU Recruitment"
+}}
 
 Hello <b>{{officer_name}}</b>,<br/><br/>
 
@@ -307,20 +304,13 @@ field improvement label="Considerations for improvement"
 
 field review_date label="Review date"
 
-field sender_rank label="Sender Rank" {
-    "Staff Sergeant"
-    "Lieutenant"
-    "Captain"
-}
-
-field sender_name label="Sender name"
+field sender label="Sender" sender="yes"
     </script>
     <script class="template" type="text/x-handlebars" title="Let's Talk" id="template-lets-talk">
-<p style="text-align: center;">
-    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
-    <b>Let's Talk</b><br/>
-    <b>Tactical Firearms Unit</b>
-</div>
+{{>header
+    title="Let's Talk"
+    department="Tactical Firearms Unit"
+}}
 
 Hello **{{officer_name}}**,<br/>
 
@@ -338,13 +328,7 @@ I need to know your thoughts on what has been discussed above. I also need you t
 
 <b>Regards,</b><br/>
 {{sender_rank}} {{sender_name}}<br/>
-{{#if (eq sender_rank "Captain")}}
-Head of Tactical Firearms
-{{else if (eq sender_rank "Lieutenant")}}
-Tactical Firearms Command
-{{else if (eq sender_rank "Staff Sergeant")}}
-Tactical Firearms Junior Command
-{{/if}}
+{{sender_role}}
 </div>
 
     </script>
@@ -363,20 +347,13 @@ field improvement label="Considerations for improvement"
 
 field review_date label="Review date"
 
-field sender_rank label="Sender Rank" {
-    "Staff Sergeant"
-    "Lieutenant"
-    "Captain"
-}
-
-field sender_name label="Sender name"
+field sender label="Sender" sender="yes"
     </script>
     <script class="template" type="text/x-handlebars" title="First/Final Written Warning" id="template-warning">
-<p style="text-align: center;">
-    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
-    <b>{{written_warning}} Written Warning</b><br/>
-    <b>Tactical Firearms Unit</b>
-</div>
+{{>header
+    title=(concat warning_type " Written Warning")
+    department="Tactical Firearms Unit"
+}}
 
 Hello **{{officer_name}}**,<br/>
 
@@ -399,17 +376,10 @@ Please remember that this may remain active on your record as an infraction for 
 
 <b>Regards,</b><br/>
 {{sender_rank}} {{sender_name}}<br/>
-{{#if (eq sender_rank "Captain")}}
-Head of Tactical Firearms
-{{else if (eq sender_rank "Lieutenant")}}
-Tactical Firearms Command
-{{else if (eq sender_rank "Staff Sergeant")}}
-Tactical Firearms Junior Command
-{{/if}}
+{{sender_role}}
 </div>
 
     </script>
-    <!-- Templates END. -->
 
     <script id="template-blacklist-schema" type="application/kdl">
 field officer_name label="Officer's name"
@@ -418,20 +388,13 @@ field blacklist_reason label="Blacklist Reason"
 
 field blacklist_length label="Blacklist Length"
 
-field sender_name label="Sender name"
-
-field sender_rank label="Sender rank" {
-    "Staff Sergeant"
-    "Lieutenant"
-    "Captain"
-}
+field sender label="Sender" sender="yes"
     </script>
     <script class="template" type="text/x-handlebars" title="Notice of Blacklist" id="template-blacklist">
-<p style="text-align: center;">
-    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
-    <b>{{written_warning}} Notice of Blacklist</b><br/>
-    <b>Tactical Firearms Unit</b>
-</div>
+{{>header
+    title="Notice of Blacklist"
+    department="Tactical Firearms Unit"
+}}
 
 Hello **{{officer_name}}**,<br/>
 
@@ -444,15 +407,11 @@ If you wish to dispute this blacklist, you may do so by directing a helpdesk tic
 
 <b>Regards,</b><br/>
 {{sender_rank}} {{sender_name}}<br/>
-{{#if (eq sender_rank "Captain")}}
-Head of Tactical Firearms
-{{else if (eq sender_rank "Lieutenant")}}
-Tactical Firearms Command
-{{else if (eq sender_rank "Staff Sergeant")}}
-Tactical Firearms Junior Command
-{{/if}}
+{{sender_role}}
     </script>
 
+
+    
     <style>
         :root {
             --bg: #0f1115;
@@ -625,8 +584,46 @@ Tactical Firearms Junior Command
 
 
     <script type="text/babel">
+        function SenderField({ node, formData, onChange }) {
+            const name = node.values[0];
+            const label = node.properties.label || name;
+            const selectedHandle = formData[name] || "";
+            const person = selectedHandle ? people[selectedHandle] : null;
+
+            function handleChange(e) {
+                const handle = e.target.value
+                onChange(name, handle)
+
+                if (handle && people[handle]) {
+                    onChange("sender_rank", people[handle].rank)
+                    onChange("sender_name", people[handle].rp)
+                    onChange("sender_role", people[handle].role)
+                } else {
+                    onChange("sender_rank", "")
+                    onChange("sender_name", "")
+                    onChange("sender_role", "")
+                }
+            }
+
+            return (
+                <div className="field-container">
+                    <label>{label}</label>
+                    <select name={name} value={selectedHandle} onChange={handleChange}>
+                        <option value="">-- Select a person --</option>
+                        {Object.values(people).map(p => (
+                            <option key={p.name} value={p.name}>{p.name}</option>
+                        ))}
+                    </select>
+                </div>
+            )
+        }
+    
         function Field({ node, formData, onChange }) {
             const name = node.values[0];
+
+            if (node.properties.sender === "yes") {
+                return <SenderField node={node} formData={formData} onChange={onChange}/>;
+            }
 
             if (node.children.length > 0) {
                 return (
@@ -726,7 +723,6 @@ Tactical Firearms Junior Command
             const renderedOutput = React.useMemo(() => {
                 const template = Handlebars.compile(window.templates[selectedTemplate].content);
                 const rendered = template(formData, { noEscape: true });
-                console.log(rendered);
                 const out = marked.parse(rendered);
                 console.log(out);
                 return {
@@ -809,8 +805,17 @@ Tactical Firearms Junior Command
             );
         }
 
-        ReactDOM.createRoot(document.getElementById("react-body"))
-            .render(<App />);
+        function WaitForData(cb) {
+            if (window.template && window.people) {
+                return cb;
+            }
+
+            window.addEventListener("data-ready", cb, { once: true });
+        }
+
+        WaitForData(() => {
+            ReactDOM.createRoot(document.getElementById("react-body")).render(<App />);
+        });
     </script>
 
     <script type="module">
@@ -832,6 +837,13 @@ Tactical Firearms Junior Command
 
         window.templates = templates;
 
+        const res = await fetch("https://api.a1larsen.de/api/v2/tfu/hierarchy");
+        const data = await res.json();
+
+        window.people = Object.fromEntries(data.map(p => {
+            return [p.nick, { name: p.nick, rp: p.rpName, rank: p.displayName, role: p.role }];
+        }));
+
         Handlebars.registerHelper("eq", function (arg1, arg2) {
             return arg1 === arg2;
         });
@@ -848,11 +860,23 @@ Tactical Firearms Junior Command
             return !args.slice(0, -1).every(Boolean);
         });
 
-
         Handlebars.registerHelper("or", function (...args) {
             return args.slice(0, -1).some(Boolean);
         });
 
+        Handlebars.registerHelper("concat", function () {
+            return Array.from(arguments).slice(0, -1).join("");
+        });
+
+        Handlebars.registerPartial("header", `
+<p style="text-align: center;">
+    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
+    <b>{{title}}</b><br/>
+    <b>{{department}}</b>
+</p>
+        `)
+
+        window.dispatchEvent(new CustomEvent("data-ready"));
     </script>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4ce6a61abdab4eeba4caca88b8eee22b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
