@@ -1,0 +1,17 @@
+{{>header
+    title="Notice of Investigation"
+    department="TFU Quality Assurance"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+In light of recent events, TFU Command has decided to launch an internal investigation into a situation regarding yourself, alongside an IA that has been created. Thus far, we believe the questions asked within your Internal Affairs statement request, or the questions they are to ask, are sufficient and therefore we won't be asking any further questions at this point in time.
+{{#if (eq is_rtfo "Yes")}}
+During the duration of this investigation your Recruit Tactical Firearms certification will be revoked. If we deem your actions are within policy, the certification will be returned to you.
+{{/if}}
+Once your statement is submitted to your IA, we will take an action independent of the IA if we deem it necessary.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Tyler Bounce<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Quality Assurance</b>

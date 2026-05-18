@@ -1,0 +1,21 @@
+field officer_name label="Officer's name"
+
+field strike label="Strike" {
+    "1"
+    "2"
+    "3"
+}
+
+field certification label="Certification" {
+    "Tactical Firearms Officer"
+    "Incident Commander"
+}
+
+showIf strike="3" {
+    field new_certification label="New Certification" {
+        "Recruit Firearms Officer"
+        "Tactical Firearms Officer"
+    }
+}
+
+field expiry_point label="Date of Point Expiry"

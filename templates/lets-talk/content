@@ -1,0 +1,22 @@
+{{>header
+    title="Let's Talk"
+    department="Tactical Firearms Unit"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+This is an 'informal warning'. Please remember that we don't keep this on record, and that it is simply a measure used to, in partnership, avoid escalation of performance related matters, and ensure that everything is on the right track!<br/><br/>
+
+<b>Performance area(s) for review:</b><br/>
+{{area}}<br/><br/>
+
+<b>Considerations for improvement:</b><br/>
+{{improvement}}<br/><br/>
+
+<b>Date for review: {{review_date}}</b><br/><br/>
+
+I need to know your thoughts on what has been discussed above. I also need you to let me know if there is anything or anybody that may be responsible for unsatisfactory performance. I will try my best to support you.<br/><br/>
+
+<b>Regards,</b><br/>
+{{sender_rank}} {{sender_name}}<br/>
+{{sender_role}}

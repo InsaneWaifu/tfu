@@ -1,0 +1,51 @@
+field officer_name label="Officer's name"
+
+field entity_kind label="Removal Reason" {
+    "Punishment"
+    "Due to rank"
+}
+
+field old_certification label="Old Certification" {
+    "Recruit Firearms Officer"
+    "Tactical Firearms Officer"
+    "Incident Commander"
+}
+
+field removed label="Removal from TFU?" {
+    "No"
+    "Yes"
+}
+
+showIf removed="Yes" {
+    field blacklist label="Blacklisted from TFU?" {
+        "No"
+        "Yes"
+    }
+
+    showIf blacklist="Yes" {
+        field blacklist_length label="Blacklist Length"
+    }
+}
+showIf entity_kind="Punishment" {
+    showIf removed="No" {
+        field new_certification label="New Certification" {
+            "Recruit Firearms Officer"
+            "Tactical Firearms Officer"
+        }
+    }
+
+    field what_happened label="What Happened"
+
+    field grading label="Grading Level" {
+        "1"
+        "2"
+        "3.1"
+        "3.2"
+    }
+
+    field expiry_point label="Date of Point Expiry"
+}
+
+showIf entity_kind="Due to rank" {
+    field old_rank label="Previous Rank"
+}

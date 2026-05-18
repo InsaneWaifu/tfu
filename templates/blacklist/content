@@ -1,0 +1,17 @@
+{{>header
+    title="Notice of Blacklist"
+    department="Tactical Firearms Unit"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+This message serves as your notice of blacklist from the Tactical Firearms Unit. This decision wasn't made in a hurry; an in-depth investigation and discussion have taken place and TFU Command have deemed your actions do not represent the qualities we expect from members of TFU. The reason for blacklist is the following:<br/>
+**{{blacklist_reason}}**<br/><br/>
+
+Following this decision, you will receive a <b>**{{blacklist_length}}** blacklist</b> from applying to any role within the Tactical Firearms Unit.<br/><br/>
+
+If you wish to dispute this blacklist, you may do so by directing a helpdesk ticket towards TFU and the Head of TFU, alongside uninvolved TFU Command members, will deal with it.<br/><br/>
+
+<b>Regards,</b><br/>
+{{sender_rank}} {{sender_name}}<br/>
+{{sender_role}}

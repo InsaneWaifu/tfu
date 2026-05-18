@@ -1,0 +1,12 @@
+field officer_name label="Officer's name"
+
+field what_happened label="What Happened"
+
+field grading label="Grading Level" {
+    "1"
+    "2"
+    "3.1"
+    "3.2"
+}
+
+field expiry_point label="Date of Point Expiry"

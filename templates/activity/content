@@ -1,0 +1,27 @@
+<p style="text-align: center;">
+    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
+{{#if (eq strike "3")}}
+<b>Activity Warning - Removal</b><br/>
+{{else}}
+    <b>Activity Warning - Strike {{strike}}</b><br/>
+{{/if}}
+    <b>TFU Quality Assurance</b>
+</p>
+
+Hello **{{officer_name}}**,<br/>
+
+{{#if (eq strike "3")}}
+This message serves as a formal notice of disciplinary action due to insufficient activity while on duty as a {{certification}}. As this marks your third and final point of contact regarding this issue, it has resulted in your demotion from the {{certification}} certification to the {{new_certification}} certification.<br/><br/>
+{{else}}
+This message serves as a notice of punishment due to insufficient activity whilst on duty as a {{certification}}. Your punishment is the following:<br/>
+
+<b>Points issued: {{strike}}</b><br/>
+<b>Date of point expiry: {{expiry_point}}</b><br/><br/>
+{{/if}}
+
+If you wish to dispute this disciplinary action, you may do so by directing a helpdesk to TFU and the Head of TFU will deal with it.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Tyler Bounce<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Quality Assurance</b>

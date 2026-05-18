@@ -1,0 +1,7 @@
+field officer_name label="Officer's name"
+
+field blacklist_reason label="Blacklist Reason"
+
+field blacklist_length label="Blacklist Length"
+
+field sender label="Sender" sender="yes"

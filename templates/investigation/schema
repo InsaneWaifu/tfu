@@ -1,0 +1,6 @@
+field officer_name label="Officer's name"
+
+field is_rtfo label="RTFO?" {
+    "No"
+    "Yes"
+}

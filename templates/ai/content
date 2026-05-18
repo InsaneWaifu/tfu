@@ -1,0 +1,26 @@
+{{>header
+    title="Application Authenticity"
+    department="TFU Recruitment"
+}}
+
+Hello <b>{{officer_name}}</b>,<br/><br/>
+
+We, the Tactical Firearms Command team, were informed of an anomaly during the grading process of your TFU Application.<br/><br/>
+
+Therefore, the question we want to ask, in which we expect full honesty from you:
+<blockquote>
+{{question}}
+</blockquote><br/><br/>
+
+
+You have the right to refuse providing a statement, however by doing so or failing to provide a statement will likely result in formal punishment being issued from TFU Command.<br/><br/>
+
+You have <b>72 hours</b> to make a decision or provide a statement.<br/><br/>
+
+We expect to hear from you soon.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Ryan Winters<br/>
+Staff Sergeant Jonathan Gin<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Recruitment</b>
