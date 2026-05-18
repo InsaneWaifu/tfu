@@ -1,4 +1,3 @@
-    <script class="template" type="text/x-handlebars" title="Notice of Punishment" id="template-punishment">
 {{>header
     title="Notice of Punishment"
     department="TFU Quality Assurance"
@@ -29,4 +28,3 @@ If you wish to dispute this disciplinary action, you may do so by directing a he
 Lieutenant Tyler Bounce<br/>
 Staff Sergeant Vina Yin<br/>
 <b>TFU Quality Assurance</b>
-    </script>
