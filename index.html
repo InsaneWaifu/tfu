@@ -60,10 +60,7 @@ showIf entity_kind="Punishment" {
 }
 
 showIf entity_kind="Due to rank" {
-    field old_rank label="Previous Rank" {
-        "Senior Officer"
-        "Corporal"
-    }
+    field old_rank label="Previous Rank"
 }
     </script>
     <script class="template" type="text/x-handlebars" title="Removal from X" id="template-removal">
@@ -414,8 +411,47 @@ Tactical Firearms Junior Command
     </script>
     <!-- Templates END. -->
 
+    <script id="template-blacklist-schema" type="application/kdl">
+field officer_name label="Officer's name"
 
+field blacklist_reason label="Blacklist Reason"
 
+field blacklist_length label="Blacklist Length"
+
+field sender_name label="Sender name"
+
+field sender_rank label="Sender rank" {
+    "Staff Sergeant"
+    "Lieutenant"
+    "Captain"
+}
+    </script>
+    <script class="template" type="text/x-handlebars" title="Notice of Blacklist" id="template-blacklist">
+<p style="text-align: center;">
+    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
+    <b>{{written_warning}} Notice of Blacklist</b><br/>
+    <b>Tactical Firearms Unit</b>
+</div>
+
+Hello **{{officer_name}}**,<br/>
+
+This message serves as your notice of blacklist from the Tactical Firearms Unit. This decision wasn't made in a hurry; an in-depth investigation and discussion have taken place and TFU Command have deemed your actions do not represent the qualities we expect from members of TFU. The reason for blacklist is the following:<br/>
+**{{blacklist_reason}}**<br/><br/>
+
+Following this decision, you will receive a <b>**{{blacklist_length}}** blacklist</b> from applying to any role within the Tactical Firearms Unit.<br/><br/>
+
+If you wish to dispute this blacklist, you may do so by directing a helpdesk ticket towards TFU and the Head of TFU, alongside uninvolved TFU Command members, will deal with it.<br/><br/>
+
+<b>Regards,</b><br/>
+{{sender_rank}} {{sender_name}}<br/>
+{{#if (eq sender_rank "Captain")}}
+Head of Tactical Firearms
+{{else if (eq sender_rank "Lieutenant")}}
+Tactical Firearms Command
+{{else if (eq sender_rank "Staff Sergeant")}}
+Tactical Firearms Junior Command
+{{/if}}
+    </script>
 
     <style>
         :root {
