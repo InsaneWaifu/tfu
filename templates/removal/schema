@@ -1,3 +1,5 @@
+title "Removal from X"
+
 field officer_name label="Officer's name"
 
 field entity_kind label="Removal Reason" {

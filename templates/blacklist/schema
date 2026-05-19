@@ -1,3 +1,5 @@
+title "Notice of Blacklist"
+
 field officer_name label="Officer's name"
 
 field blacklist_reason label="Blacklist Reason"

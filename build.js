@@ -11,15 +11,20 @@ async function runBuild() {
     for await (const entry of Deno.readDir("./templates")) {
       if (!entry.isDirectory) continue;
 
-      const name = entry.name;
+      let name = entry.name;
       const base = `templates/${name}`;
 
       const schemaRaw = await Deno.readTextFile(`${base}/schema`);
       const content = await Deno.readTextFile(`${base}/content`);
+      const parsed = parse(schemaRaw);
+
+      if (parsed.output[0].name == "title") {
+          name = parsed.output[0].values[0];
+      }
 
       result[name] = {
         content,
-        schema: parse(schemaRaw),
+        schema: parsed,
       };
     }
 
