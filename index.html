@@ -9,6 +9,407 @@
         href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=Fira+Code:wght@400;500&family=Instrument+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
     
+
+    <script id="template-removal-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field entity_kind label="Removal Reason" {
+    "Punishment"
+    "Due to rank"
+}
+
+field old_certification label="Old Certification" {
+    "Recruit Firearms Officer"
+    "Tactical Firearms Officer"
+    "Incident Commander"
+}
+
+field removed label="Removal from TFU?" {
+    "No"
+    "Yes"
+}
+
+showIf removed="Yes" {
+    field blacklist label="Blacklisted from TFU?" {
+        "No"
+        "Yes"
+    }
+
+    showIf blacklist="Yes" {
+        field blacklist_length label="Blacklist Length"
+    }
+}
+showIf entity_kind="Punishment" {
+    showIf removed="No" {
+        field new_certification label="New Certification" {
+            "Recruit Firearms Officer"
+            "Tactical Firearms Officer"
+        }
+    }
+
+    field what_happened label="What Happened"
+
+    field grading label="Grading Level" {
+        "1"
+        "2"
+        "3.1"
+        "3.2"
+    }
+
+    field expiry_point label="Date of Point Expiry"
+}
+
+showIf entity_kind="Due to rank" {
+    field old_rank label="Previous Rank"
+}
+    </script>
+    <script class="template" type="text/x-handlebars" title="Removal from X" id="template-removal">
+<p style="text-align: center;">
+    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
+    {{#if (eq removed "Yes")}}
+    <b>Removal from TFU</b><br/>
+    {{else}}
+    <b>Removal from
+        {{#if (eq old_certification "Incident Commander")}}
+            TFIC
+        {{else if (eq old_certification "Tactical Firearms Officer")}}
+            TFO
+        {{else}}
+            RTFO
+        {{/if}}
+    </b><br/>
+    {{/if}}
+    <b>TFU Quality Assurance</b>
+</p>
+
+Hello **{{officer_name}}**,<br/>
+
+{{#if (eq entity_kind "Punishment")}}
+
+{{#if (eq removed "Yes")}}
+This message serves notice of your removal from the Tactical Firearms Unit. This decision wasn't made in a hurry, an in depth investigation and discussion have taken place and TFU Command have deemed your actions do not represent the qualities we expect from our members of this Unit. The reason for this removal is the following:
+{{else}}
+This message serves notice of the removal of your {{old_certification}} certification, following this inbox you will have the {{new_certification}} certification. This decision wasn't made in a hurry, an in depth investigation and discussion have taken place and TFU Command have deemed your actions do not represent the qualities we expect from our TFOs.
+{{/if}}
+<br/><br/>
+
+<b>What happened: **{{what_happened}}**</b><br/>
+<b>Disciplinary grading: **{{grading}}**</b><br/>
+<b>Points issued:
+{{#if (eq grading "1")}}
+1
+{{else if (eq grading "2")}}
+2
+{{else if (eq grading "3.1")}}
+3
+{{else}}
+4
+{{/if}}
+</b><br/>
+<b>Date of point expiry: **{{expiry_point}}**</b>
+{{else}}
+This message serves notice of the removal of your {{old_certification}} certification.
+{{#if (eq removed "Yes")}}
+Following this inbox you will be removed from the Tactical Firearms Unit as you are no longer qualified due to your demotion from {{old_rank}}.
+{{else}}
+Following this inbox your {{old_certification}} certification will be removed as you are no longer qualified due to your demotion from {{old_rank}}.
+{{/if}}
+{{/if}}<br/><br/>
+
+{{#if (eq blacklist "Yes")}}
+Following this decision, you will receive a <b>{{blacklist_length}} blacklist</b> from applying to any role within the Tactical Firearms Unit.<br/><br/>
+{{/if}}
+
+{{#if (eq entity_kind "Due to rank")}}
+Feel free to reapply for the {{old_certification}} application again once you have reached the required qualifications.<br/><br/>
+
+If you wish to dispute this disciplinary action, you may do so by directing a helpdesk to TFU and the Head of TFU will deal with it.
+{{else}}
+If you wish to dispute this disciplinary action, you may do so by directing a helpdesk to TFU and the Head of TFU will deal with it. If this punishment was decided from an Internal affairs complaint that you are actively disputing, the punishment will remain until the verdict is decided. At which point the decision of the dispute will dictate whether it is removed or not.
+{{/if}}<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Tyler Bounce<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Quality Assurance</b><br/>
+    </script>
+
+    <script id="template-punishment-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field what_happened label="What Happened"
+
+field grading label="Grading Level" {
+    "1"
+    "2"
+    "3.1"
+    "3.2"
+}
+
+field expiry_point label="Date of Point Expiry"
+    </script>
+    <script class="template" type="text/x-handlebars" title="Notice of Punishment" id="template-punishment">
+{{>header
+    title="Notice of Punishment"
+    department="TFU Quality Assurance"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+This message serves as a notice of punishment following a recent investigation conducted by the Tactical Firearms Unit Command Team. This decision wasn't made in a hurry, an in depth investigation and discussion have taken place and TFU Command have deemed your actions do not represent the qualities we expect from members of our unit.<br/><br/>
+
+<b>What happened: **{{what_happened}}**</b><br/>
+<b>Disciplinary grading: **{{grading}}**</b><br/>
+<b>Points issued:
+{{#if (eq grading "1")}}
+1
+{{else if (eq grading "2")}}
+2
+{{else if (eq grading "3.1")}}
+3
+{{else}}
+4
+{{/if}}
+</b><br/>
+<b>Date of point expiry: **{{expiry_point}}**</b><br/>
+
+If you wish to dispute this disciplinary action, you may do so by directing a helpdesk to TFU and the Head of TFU will deal with it. If this punishment was decided from an Internal affairs complaint that you are actively disputing, the punishment will remain until the verdict is decided. At which point the decision of the dispute will dictate whether it is removed or not.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Tyler Bounce<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Quality Assurance</b>
+    </script>
+
+    <script id="template-investigation-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field is_rtfo label="RTFO?" {
+    "No"
+    "Yes"
+}
+    </script>
+    <script class="template" type="text/x-handlebars" title="Notice of Investigation" id="template-investigation">
+{{>header
+    title="Notice of Investigation"
+    department="TFU Quality Assurance"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+In light of recent events, TFU Command has decided to launch an internal investigation into a situation regarding yourself, alongside an IA that has been created. Thus far, we believe the questions asked within your Internal Affairs statement request, or the questions they are to ask, are sufficient and therefore we won't be asking any further questions at this point in time.
+{{#if (eq is_rtfo "Yes")}}
+During the duration of this investigation your Recruit Tactical Firearms certification will be revoked. If we deem your actions are within policy, the certification will be returned to you.
+{{/if}}
+Once your statement is submitted to your IA, we will take an action independent of the IA if we deem it necessary.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Tyler Bounce<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Quality Assurance</b>
+    </script>
+
+    <script id="template-activity-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field strike label="Strike" {
+    "1"
+    "2"
+    "3"
+}
+
+field certification label="Certification" {
+    "Tactical Firearms Officer"
+    "Incident Commander"
+}
+
+showIf strike="3" {
+    field new_certification label="New Certification" {
+        "Recruit Firearms Officer"
+        "Tactical Firearms Officer"
+    }
+}
+
+field expiry_point label="Date of Point Expiry"
+    </script>
+    <script class="template" type="text/x-handlebars" title="Activity Warning" id="template-activity">
+<p style="text-align: center;">
+    <img src="https://plpd.online/images/swat.png" style="display: block; margin: 0 auto;" width="164" height="164"/><br/>
+{{#if (eq strike "3")}}
+<b>Activity Warning - Removal</b><br/>
+{{else}}
+    <b>Activity Warning - Strike {{strike}}</b><br/>
+{{/if}}
+    <b>TFU Quality Assurance</b>
+</p>
+
+Hello **{{officer_name}}**,<br/>
+
+{{#if (eq strike "3")}}
+This message serves as a formal notice of disciplinary action due to insufficient activity while on duty as a {{certification}}. As this marks your third and final point of contact regarding this issue, it has resulted in your demotion from the {{certification}} certification to the {{new_certification}} certification.<br/><br/>
+{{else}}
+This message serves as a notice of punishment due to insufficient activity whilst on duty as a {{certification}}. Your punishment is the following:<br/>
+
+<b>Points issued: {{strike}}</b><br/>
+<b>Date of point expiry: {{expiry_point}}</b><br/><br/>
+{{/if}}
+
+If you wish to dispute this disciplinary action, you may do so by directing a helpdesk to TFU and the Head of TFU will deal with it.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Tyler Bounce<br/>
+Staff Sergeant Vina Yin<br/>
+<b>TFU Quality Assurance</b>
+    </script>
+    
+    <script id="template-ai-schema" type="application/kdl">
+        field officer_name label="Officer's name"
+
+        field question label="Question"
+    </script>
+    <script class="template" type="text/x-handlebars" title="Application Authenticity" id="template-ai">
+{{>header
+    title="Application Authenticity"
+    department="TFU Recruitment"
+}}
+
+Hello <b>{{officer_name}}</b>,<br/><br/>
+
+We, the Tactical Firearms Command team, were informed of an anomaly during the grading process of your TFU Application.<br/><br/>
+
+Therefore, the question we want to ask, in which we expect full honesty from you:
+<blockquote>
+{{question}}
+</blockquote><br/><br/>
+
+
+You have the right to refuse providing a statement, however by doing so or failing to provide a statement will likely result in formal punishment being issued from TFU Command.<br/><br/>
+
+You have <b>72 hours</b> to make a decision or provide a statement.<br/><br/>
+
+We expect to hear from you soon.<br/><br/>
+
+<b>Regards,</b><br/>
+Lieutenant Ryan Winters<br/>
+Staff Sergeant Jonathan Gin<br/>
+<b>TFU Recruitment</b>
+    </script>
+
+    <script id="template-lets-talk-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field area label="Performance area(s) for review"
+
+field improvement label="Considerations for improvement"
+
+field review_date label="Review date"
+
+field sender label="Sender" sender="yes"
+    </script>
+    <script class="template" type="text/x-handlebars" title="Let's Talk" id="template-lets-talk">
+{{>header
+    title="Let's Talk"
+    department="Tactical Firearms Unit"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+This is an 'informal warning'. Please remember that we don't keep this on record, and that it is simply a measure used to, in partnership, avoid escalation of performance related matters, and ensure that everything is on the right track!<br/><br/>
+
+<b>Performance area(s) for review:</b><br/>
+{{area}}<br/><br/>
+
+<b>Considerations for improvement:</b><br/>
+{{improvement}}<br/><br/>
+
+<b>Date for review: {{review_date}}</b><br/><br/>
+
+I need to know your thoughts on what has been discussed above. I also need you to let me know if there is anything or anybody that may be responsible for unsatisfactory performance. I will try my best to support you.<br/><br/>
+
+<b>Regards,</b><br/>
+{{sender_rank}} {{sender_name}}<br/>
+{{sender_role}}
+</div>
+
+    </script>
+
+    <script id="template-warning-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field warning_type label="First/Final" {
+    "First"
+    "Final"
+}
+
+field area label="Performance area(s) for review"
+
+field improvement label="Considerations for improvement"
+
+field review_date label="Review date"
+
+field sender label="Sender" sender="yes"
+    </script>
+    <script class="template" type="text/x-handlebars" title="First/Final Written Warning" id="template-warning">
+{{>header
+    title=(concat warning_type " Written Warning")
+    department="Tactical Firearms Unit"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+This is a 'written warning'. It has been identified that your performance must improve, and it is hoped that this measure will encourage you to take steps towards better performance.<br/><br/>
+
+<b>Type of Written Warning:<br/>
+{{warning_type}}</b><br/><br/>
+
+<b>Performance area(s) for review:</b><br/>
+{{area}}<br/><br/>
+
+<b>Considerations for improvement:</b><br/>
+{{improvement}}<br/><br/>
+
+<b>Date for review: {{review_date}}</b><br/><br/>
+
+I need to know your thoughts on what has been discussed above. I also need you to let me know if there is anything or anybody that may be responsible for unsatisfactory performance. I will try my best to support you.<br/><br/>
+
+Please remember that this may remain active on your record as an infraction for 3/6 months. If you wish to appeal the warning, you may do so by submitting a helpdesk ticket to Professional Standards or the Chiefs of Department.<br/><br/>
+
+<b>Regards,</b><br/>
+{{sender_rank}} {{sender_name}}<br/>
+{{sender_role}}
+</div>
+
+    </script>
+
+    <script id="template-blacklist-schema" type="application/kdl">
+field officer_name label="Officer's name"
+
+field blacklist_reason label="Blacklist Reason"
+
+field blacklist_length label="Blacklist Length"
+
+field sender label="Sender" sender="yes"
+    </script>
+    <script class="template" type="text/x-handlebars" title="Notice of Blacklist" id="template-blacklist">
+{{>header
+    title="Notice of Blacklist"
+    department="Tactical Firearms Unit"
+}}
+
+Hello **{{officer_name}}**,<br/>
+
+This message serves as your notice of blacklist from the Tactical Firearms Unit. This decision wasn't made in a hurry; an in-depth investigation and discussion have taken place and TFU Command have deemed your actions do not represent the qualities we expect from members of TFU. The reason for blacklist is the following:<br/>
+**{{blacklist_reason}}**<br/><br/>
+
+Following this decision, you will receive a <b>**{{blacklist_length}}** blacklist</b> from applying to any role within the Tactical Firearms Unit.<br/><br/>
+
+If you wish to dispute this blacklist, you may do so by directing a helpdesk ticket towards TFU and the Head of TFU, alongside uninvolved TFU Command members, will deal with it.<br/><br/>
+
+<b>Regards,</b><br/>
+{{sender_rank}} {{sender_name}}<br/>
+{{sender_role}}
+    </script>    
+
     <style>
         :root {
             --bg: #0f1115;
@@ -401,17 +802,7 @@
             );
         }
 
-        function WaitForData(cb) {
-            if (window.template && window.people) {
-                return cb;
-            }
-
-            window.addEventListener("data-ready", cb, { once: true });
-        }
-
-        WaitForData(() => {
-            ReactDOM.createRoot(document.getElementById("react-body")).render(<App />);
-        });
+        ReactDOM.createRoot(document.getElementById("react-body")).render(<App />);
     </script>
 
     <script type="module">
@@ -429,6 +820,7 @@
 
         // Discover all templates
         let templates = {};
+        /*
         for (const [name, title] of Object.entries(template_names)) {
             const schema_res = await fetch("templates/" + name + "/schema");
             const content_res = await fetch("templates/" + name + "/content");
@@ -441,8 +833,9 @@
                 schema: parse(schema)
             }
         }
+        */
         
-        /*
+        
         document.querySelectorAll("script.template").forEach(templateScript => {
             const templateName = templateScript.getAttribute("title");
             const templateContent = templateScript.innerHTML;
@@ -454,7 +847,8 @@
                 schema: templateSchema
             };
         });
-        */
+        
+        
         window.templates = templates;
 
         /*
@@ -562,8 +956,6 @@
     <b>{{department}}</b>
 </p>
         `)
-
-        window.dispatchEvent(new CustomEvent("data-ready"));
     </script>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4ce6a61abdab4eeba4caca88b8eee22b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
