@@ -11,5 +11,9 @@
     "marked": "https://esm.sh/marked",
     "std": "jsr:@std"
   },
+  "tasks": {
+      "build": "deno run -A build.js",
+      "watch": "deno run -A build.js --watch"
+  },
   "vendor": false
 }
