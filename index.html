@@ -266,6 +266,8 @@ Staff Sergeant Vina Yin<br/>
         field officer_name label="Officer's name"
 
         field question label="Question"
+
+        field sdender label="Sender" sender="yes"
     </script>
     <script class="template" type="text/x-handlebars" title="Application Authenticity" id="template-ai">
 {{>header
@@ -290,9 +292,8 @@ You have <b>72 hours</b> to make a decision or provide a statement.<br/><br/>
 We expect to hear from you soon.<br/><br/>
 
 <b>Regards,</b><br/>
-Lieutenant Ryan Winters<br/>
-Staff Sergeant Jonathan Gin<br/>
-<b>TFU Recruitment</b>
+{{sender_rank}} {{sender_name}}<br/>
+{{sender_role}}
     </script>
 
     <script id="template-lets-talk-schema" type="application/kdl">
