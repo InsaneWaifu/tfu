@@ -1,0 +1,15 @@
+{
+  "imports": {
+    "preact": "https://esm.sh/preact@10.19.3",
+    "preact/hooks": "https://esm.sh/preact@10.19.3/hooks",
+    "preact/jsx-runtime": "https://esm.sh/preact@10.19.3/jsx-runtime",
+    "kdljs": "https://esm.sh/kdljs@0.3.0",
+    "handlebars": "https://esm.sh/handlebars@4.7.9?target=es2020",
+    "esbuild": "https://deno.land/x/esbuild@v0.28.0/mod.js",
+    "@craftamap/esbuild-plugin-html": "npm:@craftamap/esbuild-plugin-html",
+    "@luca/esbuild-deno-loader": "jsr:@luca/esbuild-deno-loader",
+    "marked": "https://esm.sh/marked",
+    "std": "jsr:@std"
+  },
+  "vendor": false
+}

@@ -1,0 +1,155 @@
+:root {
+    --bg: #0f1115;
+    --panel: #151922;
+    --panel-2: #1b2130;
+    --text: #e6e6e6;
+    --muted: #9aa4b2;
+    --border: #2a3242;
+    --accent: #6aa6ff;
+    --danger: #ff5c5c;
+    --radius: 10px;
+    --font: "Instrument Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+    --mono: "Fira Code", monospace;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.5;
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#app-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+}
+
+#template-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+select,
+input,
+textarea,
+button {
+    font: inherit;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    color: var(--text);
+    padding: 8px 10px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+input {
+    font-family: var(--font);
+    font-size: 14px;
+}
+
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+#app-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    flex: 1;
+}
+
+#form-container,
+#output-container {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    overflow: auto;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+}
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+label {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+    font-family: var(--mono);
+    font-size: 13px;
+}
+
+button {
+    cursor: pointer;
+    transition: 0.15s ease;
+    background: var(--accent);
+    border: none;
+    color: #0b0f16;
+    font-weight: 600;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+#rendered-output {
+    font-size: 14px;
+}
+
+#rendered-output pre,
+#rendered-output code {
+    font-family: var(--mono);
+    background: #0b0f16;
+    padding: 2px 4px;
+    border-radius: 6px;
+}
+
+#rendered-output blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    color: var(--muted);
+    margin: 10px 0;
+}
+
+@media (max-width: 900px) {
+    #app-body {
+        grid-template-columns: 1fr;
+    }
+}
+
