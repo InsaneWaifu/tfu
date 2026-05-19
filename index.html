@@ -457,12 +457,79 @@
         */
         window.templates = templates;
 
+        /*
         const res = await fetch("https://api.a1larsen.de/api/v2/tfu/hierarchy");
         const data = await res.json();
 
         window.people = Object.fromEntries(data.map(p => {
             return [p.nick, { name: p.nick, rp: p.rpName, rank: p.displayName, role: p.role }];
         }));
+
+        console.log(window.people)
+        */
+        
+        window.people = {
+            "A1L": {
+                "name": "A1L",
+                "rp": "Schneider Ficklestein",
+                "rank": "Chief of Department",
+                "role": "Chiefs of Department"
+            },
+            "Tilin": {
+                "name": "Tilin",
+                "rp": "Edward Field",
+                "rank": "Deputy Chief of Department",
+                "role": "Chiefs of Department"
+            },
+            "Scrabuz": {
+                "name": "Scrabuz",
+                "rp": "Jaden Rogerson",
+                "rank": "Deputy Chief of Department",
+                "role": "Chiefs of Department"
+            },
+            "Bnjemann": {
+                "name": "Bnjemann",
+                "rp": "Vinnie Bathory",
+                "rank": "Deputy Chief of Department",
+                "role": "Chiefs of Department"
+            },
+            "Aquaa": {
+                "name": "Aquaa",
+                "rp": "Damon Creed",
+                "rank": "Major",
+                "role": "Head of Operation Services"
+            },
+            "Megasaw": {
+                "name": "Megasaw",
+                "rp": "Jacob Matthews",
+                "rank": "Captain",
+                "role": "Head of Tactical Firearms"
+            },
+            "tyler ye": {
+                "name": "tyler ye",
+                "rp": "Tyler Labubu",
+                "rank": "Lieutenant",
+                "role": "Tactical Firearms Command"
+            },
+            "Cosmic": {
+                "name": "Cosmic",
+                "rp": "Ryan Winters",
+                "rank": "Lieutenant",
+                "role": "Tactical Firearms Command"
+            },
+            "teby": {
+                "name": "teby",
+                "rp": "Kaisa Whiskers",
+                "rank": "Staff Sergeant",
+                "role": "Tactical Firearms Junior Command"
+            },
+            "ThePeak": {
+                "name": "ThePeak",
+                "rp": "Jonathan Gin",
+                "rank": "Staff Sergeant",
+                "role": "Tactical Firearms Junior Command"
+            }
+        }
 
         Handlebars.registerHelper("eq", function (arg1, arg2) {
             return arg1 === arg2;
